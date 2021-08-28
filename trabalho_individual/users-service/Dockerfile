@@ -4,11 +4,13 @@ FROM node:14
 WORKDIR /app
 
 # Install app dependencies
-COPY package.json  yarn.lock ./
+COPY package.json /app
+COPY yarn.lock /app
 
 RUN yarn
+
 # Bundle app source
-COPY . ./
+COPY . /app
 
 EXPOSE 7101
-CMD ["yarn db:migrate", "yarn watch"]
+CMD yarn db:migrate && yarn watch
