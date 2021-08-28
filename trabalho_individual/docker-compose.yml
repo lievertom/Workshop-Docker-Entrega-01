@@ -1,4 +1,5 @@
 version: '3.5'
+
 services: 
   users-service-db:
     image: mysql:5.7.20
@@ -18,5 +19,24 @@ services:
     ports: 
       - 7101:7101
 
+  chat-service-db:
+    image: mysql:5.7.20
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    ports: 
+      - 7200:3306
+    volumes:
+      - chat-service-db-data:/var/lib/mysql
+
+  chat-service:
+    build:
+      context: ./chat-service
+    depends_on:
+      - chat-service-db
+    ports: 
+      - 7100:7100
+
 volumes:
+  chat-service-db-data:
   users-service-db-data:
