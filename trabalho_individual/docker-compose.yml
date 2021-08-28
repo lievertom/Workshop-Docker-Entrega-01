@@ -10,5 +10,13 @@ services:
     volumes:
       - users-service-db-data:/var/lib/mysql
 
+  users-service:
+    build:
+      context: ./users-service
+    depends_on:
+      - users-service-db
+    ports: 
+      - 7101:7101
+
 volumes:
   users-service-db-data:
