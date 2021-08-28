@@ -54,6 +54,16 @@ services:
     ports:
       - 7001:7001
 
+  phpmyadmin:
+    image: phpmyadmin
+    depends_on:
+      - users-service-db
+      - chat-service-db
+    ports:
+      - 7300:80
+    volumes:
+      - ./phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+
 volumes:
   chat-service-db-data:
   users-service-db-data:
