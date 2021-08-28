@@ -1,0 +1,14 @@
+version: '3.5'
+services: 
+  users-service-db:
+    image: mysql:5.7.20
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db
+    ports: 
+      - 7201:3306
+    volumes:
+      - users-service-db-data:/var/lib/mysql
+
+volumes:
+  users-service-db-data:
