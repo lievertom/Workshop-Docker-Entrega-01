@@ -37,6 +37,15 @@ services:
     ports: 
       - 7100:7100
 
+  api-gateway:
+    build:
+      context: ./api-gateway
+    depends_on:
+      - chat-service
+      - users-service
+    ports:
+      - 7000:7000
+
 volumes:
   chat-service-db-data:
   users-service-db-data:
